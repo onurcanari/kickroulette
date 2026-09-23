@@ -209,6 +209,6 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, cacheEntries: cache.size });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`KickRoulette running at http://localhost:${PORT}`);
 });
