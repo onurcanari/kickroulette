@@ -1,0 +1,17 @@
+{
+  "name": "kickroulette",
+  "version": "1.0.0",
+  "description": "Classic stream roulette for Kick.com — random live streams with one click",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "private": true
+}

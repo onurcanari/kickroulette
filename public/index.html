@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KickRoulette — random live Kick.com streams. Spin for the next stream." />
+  <title>KickRoulette</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">K</span>
+      <h1>Kick<span>Roulette</span></h1>
+    </div>
+
+    <div class="controls" id="controls">
+      <label class="field">
+        <span>Lang</span>
+        <select id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="tr">Türkçe</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="pt">Português</option>
+          <option value="it">Italiano</option>
+          <option value="pl">Polski</option>
+          <option value="ru">Русский</option>
+          <option value="ar">العربية</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Min viewers</span>
+        <input id="minViewers" type="number" min="0" step="1" value="0" aria-label="Minimum viewers" />
+      </label>
+
+      <label class="field">
+        <span>Max</span>
+        <input id="maxViewers" type="number" min="0" step="1" placeholder="∞" aria-label="Maximum viewers" />
+      </label>
+
+      <label class="field">
+        <span>Category</span>
+        <input id="category" type="text" placeholder="e.g. just-chatting" aria-label="Category filter" />
+      </label>
+
+      <label class="toggle" title="When off, exclude mature streams">
+        <input id="mature" type="checkbox" checked />
+        <span>Mature</span>
+      </label>
+
+      <button id="nextBtn" class="btn-next" type="button" title="Next stream (Space / N)">
+        Next
+      </button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="player-wrap">
+      <div id="loading" class="overlay loading" hidden>
+        <div class="spinner"></div>
+        <p>Spinning the wheel…</p>
+      </div>
+      <div id="empty" class="overlay empty">
+        <p>Hit <strong>Next</strong> to land on a live Kick stream</p>
+      </div>
+      <iframe
+        id="player"
+        title="Kick stream player"
+        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="info-card" id="infoCard">
+        <div class="info-head">
+          <img id="avatar" class="avatar" alt="" hidden />
+          <div>
+            <h2 id="username">—</h2>
+            <p id="viewers" class="muted">— viewers</p>
+          </div>
+        </div>
+        <p id="title" class="title">Waiting for a stream…</p>
+        <p id="categoryLabel" class="pill" hidden></p>
+        <div class="info-actions">
+          <a id="openKick" class="btn-link" href="https://kick.com" target="_blank" rel="noopener noreferrer">
+            Open on Kick
+          </a>
+        </div>
+        <p class="hint">Shortcuts: <kbd>Space</kbd> or <kbd>N</kbd> for next</p>
+      </div>
+      <div class="chat-wrap" id="chatWrap" hidden>
+        <iframe id="chat" title="Kick chat" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
